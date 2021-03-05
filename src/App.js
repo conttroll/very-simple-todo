@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import ToDoContainer from "./components/ToDo/ToDoContainer";
+import AllContainer from "./components/All/AllContainer";
+import ActiveContainer from "./components/Active/ActiveContainer";
+import CompletedContainer from "./components/Completed/CompletedContainer";
+import {Route} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <ToDoContainer />
+        <Route path="/:status?" render={ () =>
+            <AllContainer /> }
+        />
+        {/*<Route path="/active" render={ () =>*/}
+        {/*    <ActiveContainer /> }*/}
+        {/*/>*/}
+        {/*<Route path="/completed" render={ () =>*/}
+        {/*    <CompletedContainer /> }*/}
+        {/*/>*/}
     </div>
   );
 }
