@@ -1,16 +1,14 @@
-import {NavLink} from "react-router-dom";
+import styles from './ToDo.module.css';
 
 const ToDo = (props) => {
     return (
         <>
-            <input type="text" value={props.text} onChange={(e) => props.writeNewText(e.target.value)} />
-            <button onClick={() => {
-                props.addTodo(props.text)
-                props.writeNewText('')
-            }}>Add</button>
-            <NavLink to={'/'}>all</NavLink>
-            <NavLink to={'/active'}>active</NavLink>
-            <NavLink to={'/completed'}>completed</NavLink>
+            <input onKeyDown={(e) => {
+                if (e.keyCode === 13) {
+                    props.addTodo(props.text)
+                    props.writeNewText('')
+                }
+                }} className={styles.newTodo} type="text" value={props.text} onChange={(e) => props.writeNewText(e.target.value)} />
         </>
     )
 }

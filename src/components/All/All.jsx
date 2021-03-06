@@ -5,7 +5,7 @@ const All = (props) => {
     } else if (props.match.params.status === 'completed') {
         todos = props.todos.map(todo => todo.completed ? <li>{todo.text}</li> : null)
     } else {
-        todos = props.todos.map(todo => todo.completed ? <li><strong>{todo.text}</strong></li> : <li>{todo.text}</li>);
+        todos = props.todos.map(todo => <li><input type="checkbox"/>{todo.text}</li>);
     }
     return (
         <>
