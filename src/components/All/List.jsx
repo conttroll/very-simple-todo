@@ -16,9 +16,13 @@ class List extends React.Component {
     render() {
         return (
             <li>
-                <input onChange={() => {
-                    this.props.completeTodo(this.props.id)
-                }}
+                <input onChange={ () => {
+                    if (this.props.checked) {
+                        this.props.activeTodo(this.props.id)
+                    } else {
+                        this.props.completeTodo(this.props.id)
+                    }
+                } }
                        checked={this.props.checked ? this.props.checked : ''}
                        type="checkbox"/>
 

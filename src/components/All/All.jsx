@@ -21,7 +21,7 @@ class All extends React.Component {
                 .map(todo => {
                     return todo.completed ?
                         <List editMode={todo.editMode}
-                              completeTodo={this.props.completeTodo}
+                              activeTodo={this.props.activeTodo}
                               id={todo.id}
                               activateEditMode={this.props.activateEditMode}
                               deactivateEditMode={this.props.deactivateEditMode}
@@ -35,7 +35,7 @@ class All extends React.Component {
                 .map(todo => {
                     return todo.completed ?
                         <List editMode={todo.editMode}
-                              completeTodo={this.props.completeTodo}
+                              activeTodo={this.props.activeTodo}
                               id={todo.id}
                               activateEditMode={this.props.activateEditMode}
                               deactivateEditMode={this.props.deactivateEditMode}
