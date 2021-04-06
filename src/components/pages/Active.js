@@ -7,7 +7,7 @@ const Active = () => {
 
     const loadTodos = async () => {
         const result = await axios.get('http://localhost:3002/todos');
-        setTodos(result.data);
+        setTodos(result.data.reverse());
     }
 
     useEffect(() => {

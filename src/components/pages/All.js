@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
+import AddTodo from "./Add";
 
 const AllTodo = () => {
     const [todos, setTodos] = useState([]);
@@ -16,7 +17,7 @@ const AllTodo = () => {
 
     const loadTodos = async () => {
         const result = await axios.get('http://localhost:3002/todos');
-        setTodos(result.data);
+        setTodos(result.data.reverse());
     }
 
     useEffect(() => {
@@ -45,7 +46,8 @@ const AllTodo = () => {
 
     return (
         <div className="container">
-            <table className="table">
+            <AddTodo loadTodos={loadTodos}/>
+            <table className="table mt-3">
                 <thead className="thead-dark">
                 <tr>
                     <th scope="col">Состояние</th>
@@ -58,9 +60,11 @@ const AllTodo = () => {
                     todos.map((todo) => {
                         return (
                             <tr>
-                                <input className="form-check"
-                                       type="checkbox"
-                                       checked={todo.completed ? 'checked' : ''}/>
+                                <td>
+                                    <input className="form-check"
+                                           type="checkbox"
+                                           checked={todo.completed ? 'checked' : ''}/>
+                                </td>
                                 {mode && todoId == todo.id ?
                                     <td>
                                         <input autoFocus="true"

@@ -1,31 +1,39 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import axios from "axios";
 
-const AddTodo = () => {
-    const [newTodo, setNewTodo] = useState('');
+class AddTodo extends React.Component {
+    state = ({
+        newTodo: ''
+    })
 
-    const onInputChange = (e) => {
-        setNewTodo(e.target.value);
+    onInputChange = (e) => {
+        this.setState({
+            newTodo: e.target.value
+        });
     }
 
-    const onSubmit = async (e) => {
+    onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:3002/todos', {title: newTodo, completed: false});
+        await axios.post('http://localhost:3002/todos', {title: this.state.newTodo, completed: false});
+        this.props.loadTodos();
+        this.state.newTodo = '';
     }
 
-    return (
-        <div>
-            <form onSubmit={(event => onSubmit(event))}>
-                <input
-                    type="text"
-                    className="input-group-text m-auto w-100"
-                    placeholder="Add todo"
-                    value={newTodo}
-                    onChange={(e) => onInputChange(e)}
-                />
-            </form>
-        </div>
-    )
+    render() {
+        return (
+            <div>
+                <form onSubmit={(event => this.onSubmit(event))}>
+                    <input
+                        type="text"
+                        className="input-group-text m-auto w-100"
+                        placeholder="Add todo"
+                        value={this.state.newTodo}
+                        onChange={(e) => this.onInputChange(e)}
+                    />
+                </form>
+            </div>
+        )
+    }
 }
 
 export default AddTodo;
